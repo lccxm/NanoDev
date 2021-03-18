@@ -17,6 +17,11 @@ struct MainPage {
     
     mutating func createPost(username: String) -> Void {
         var post = Post(username: username)
+        print("Post Title: ")
+        let t = readLine()
+        if let title = t {
+            post.title = title
+        }
          post.text = readPostText()
         allPosts.append(post)
     }
