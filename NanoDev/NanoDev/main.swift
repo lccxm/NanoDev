@@ -5,7 +5,6 @@
 //  Created by Lucca Molon and Matheus Polonia on 16/03/21.
 //
 
-// funcionalidades -> postar, responder, ver posts, like, dislike
 import Foundation
 
 let dateFormatter = DateFormatter()
@@ -15,15 +14,15 @@ dateFormatter.timeStyle = .short
 struct MainPage {
     var allPosts: [Post] = []
     
-    mutating func createPost(username: String) -> Void {
+    mutating func createPost(username: String) -> Post {
         var post = Post(username: username)
         print("Post Title: ")
         let t = readLine()
         if let title = t {
             post.title = title
         }
-         post.text = readPostText()
-        allPosts.append(post)
+        post.text = readPostText()
+        return post
     }
     
     func readPostText() -> String {
@@ -46,22 +45,17 @@ struct MainPage {
             return postText
         }
     
-    mutating func like(position: Int) -> Void {
-        allPosts[position - 1].likes += 1
-        order()
+    mutating func like(position: Int, array: [Post]) -> [Post] {
+        var newArray = array
+        newArray[position - 1].likes += 1
+        return newArray.sorted { comparePost(p1: $0, p2: $1) }
     }
     
-    mutating func dislike(position: Int) {
-        if allPosts[position - 1].likes != 0 {
-            allPosts[position - 1].likes -= 1
-            order()
-        }// falta tratamento de erro
-    }
-    
-    mutating func likeReply(Postposition: Int, replyPosition: Int) {
-        allPosts[Postposition - 1].replies[replyPosition - 1].likes += 1
-        order()
-    }
+    mutating func dislike(position: Int, array: [Post]) -> [Post] {
+        var newArray = array
+        newArray[position - 1].likes -= 1
+        return newArray.sorted { comparePost(p1: $0, p2: $1) }
+        }
     
     func comparePost(p1: Post, p2: Post) -> Bool {
         if p1.likes > p2.likes{
@@ -76,43 +70,51 @@ struct MainPage {
         }
         return false
     }
-    
-    mutating func order() {
-        var orderedPosts = allPosts
-        orderedPosts.sort { comparePost(p1: $0, p2: $1) }
-        allPosts = orderedPosts
-    }
-    
-    mutating func createReply(position: Int, username: String) {
-        var post = Post(username: username)
-        print("Message: ")
-        let message = readLine()
-        if let m = message {
-            post.text = m
+
+    func toString(post: Post, number: Int) {
+        print("\n▸ Posted by u/\(post.username)  \(differenceInDays(date: post.date)) \n\n\(post.text) \n↶ Replies: \(post.replies.count)   ★ Likes: \(post.likes)   Post Number: \(number) \n------------------------------------------------")
+        toStringReply(replys: post.replies, level: 1)
         }
-        allPosts[position - 1].replies.append(post)
-    }
     
-    func toString(post: Post) {
-        print("\n\(post.username)\n\n\(post.text)\nlikes: \(post.likes)\n\(dateFormatter.string(from: post.date))\nReplies: \(post.replies.count)")
-    }
+    func toStringReply(replys: [Post], level: Int) {
+            var t = ""
+            for _ in 0...level{
+                t += "\t"
+            }
+            if !replys.isEmpty {
+                for reps in replys {
+                    print("\(t)|\(reps.username)  \(differenceInDays(date: reps.date)) \n\(t)|\n\(t)|\(reps.text) \n\(t)|\n\(t)|↶ Replies: \(reps.replies.count)   ★ Likes: \(reps.likes)  Reply Number: \(Int(replys.firstIndex(where: { $0.date == reps.date }) ?? 0) + 1) \n\(t)--------------------------------------------")
+                    toStringReply(replys: reps.replies, level: level + 1)
+                }
+            }
+        }
     
-    func titleToString(post: Post, postNumber: Int) {
-        print("Author: \(post.username) | Title: \(post.title) | Likes: \(post.likes) | Replies: \(post.replies.count) | Post Number -> \(postNumber)\n--")
-    }
+    func printLineClearTerminal() {
+            for _ in 1...10 {
+                print("\n")
+            }
+        }
     
+    func differenceInDays(date: Date) -> String{
+            let difference = Date().timeIntervalSince(date)
+            if Int(difference)/86400 > 0 {
+                return "\(Int(difference)/86400) days ago"
+            } else if Int(difference)/3600  > 0{
+                return "\(Int(difference)/3600) hours ago"
+            } else if Int(difference)/60 > 30{
+                return "\(Int(difference)/60) mins ago"
+            } else if Int(difference)/60 > 30 {
+                return "30 min ago"
+            } else {
+                return "just now"
+            }
+        }
     
     func printAll() {
+        var number = 1
         for i in allPosts {
-            toString(post: i)
-        }
-    }
-    
-    func printAllTitles() {
-        var postNumber = 1
-        for post in allPosts {
-            titleToString(post: post, postNumber: postNumber)
-            postNumber += 1
+            toString(post: i, number: number)
+            number += 1
         }
     }
 }
@@ -137,9 +139,9 @@ func printMenu() {
 }
 
 func printPostMenu() {
-    print("------------------------------------------------------------------------------------------------------------")
-    print("|1| See all replies |2| Reply |3| Like Post |4| Dislike Post |5| Like a reply |6| Dislike a reply |˜| Exit")
-    print("------------------------------------------------------------------------------------------------------------")
+    print("----------------------------------------------------------------------------------------")
+    print("|1| Reply |2| Like Post |3| Dislike Post |4| Like a reply |5| Dislike a reply |˜| Exit")
+    print("----------------------------------------------------------------------------------------")
 }
 
 func run() {
@@ -148,7 +150,10 @@ func run() {
     // populate main page
     
     print("Escolha seu username: ")
-    let name = readLine()
+    let nome = readLine()
+    guard let name = nome else {
+        return
+    }
     while true {
         printMenu()
         let number = readLine()
@@ -158,16 +163,14 @@ func run() {
             }
             switch Int(n) {
             case 1:
-                if let username = name {
-                    main.createPost(username: username)
-                }
+                 main.allPosts.append(main.createPost(username: name))
             case 2:
                 print("Enter a post number: ")
                 let p = readLine()
-                if let post = p {
-                    main.toString(post: main.allPosts[Int(post)! - 1])
+                guard let post = p else{
+                    break
                 }
-                
+                main.toString(post: main.allPosts[Int(post)! - 1], number: Int(post)!)
                 while true {
                     printPostMenu()
                     let number = readLine()
@@ -177,39 +180,66 @@ func run() {
                         }else {
                             switch Int(n)! {
                             case 1:
-                                print(main.allPosts[Int(p!)! - 1].replies)
+                                print("--------------------------------------------")
+                                print("|1| Reply this post |2| Reply another reply")
+                                print("--------------------------------------------")
+                                let a = readLine()
+                                if let answer = a {
+                                    if Int(answer)! < 1 || Int(answer)! > 2 {
+                                        break
+                                    }
+                                    switch Int(answer)! {
+                                    case 1:
+                                        main.allPosts[Int(post)! - 1].replies.append(main.createPost(username: name))
+                                    case 2:
+                                        print("Which Reply? ")
+                                        let r = readLine()
+                                        if let replyNumber = r {
+                                            main.allPosts[Int(post)! - 1].replies[Int(replyNumber)! - 1].replies.append(main.createPost(username: name))
+                                        }
+                                    default:
+                                        print("")
+                                    }
+                                }
                             case 2:
-                                return
+                                main.allPosts = main.like(position: Int(p!)!, array: main.allPosts)
                             case 3:
-                                main.like(position: Int(p!)!)
+                                main.allPosts = main.dislike(position: Int(p!)!, array: main.allPosts)
                             case 4:
-                                main.dislike(position: Int(p!)!)
+                                print("Which Reply? ")
+                                let r = readLine()
+                                if let replyNumber = r {
+                                    main.allPosts[Int(post)! - 1].replies = main.like(position: Int(replyNumber)!, array: main.allPosts[Int(post)! - 1].replies)
+                                }
                             case 5:
-                                return
-                            case 6:
-                                return
+                                print("Which Reply? ")
+                                let r = readLine()
+                                if let replyNumber = r {
+                                    main.allPosts[Int(post)! - 1].replies = main.dislike(position: Int(replyNumber)!, array: main.allPosts[Int(post)! - 1].replies)
+                                }
                             default:
                                 print("Invalid Input :(")
                             }
                         }
                     }
+                    main.toString(post: main.allPosts[Int(p!)! - 1], number: Int(post)!)
                 }
             case 3:
                 print("Enter a post number: ")
                 let p = readLine()
                 if let post = p {
-                    main.like(position: Int(post)!)
-                } // tratamento de erro
+                    main.allPosts = main.like(position: Int(post)!, array: main.allPosts)
+                }
             case 4:
                 print("Enter a post number: ")
                 let p = readLine()
                 if let post = p {
-                    main.dislike(position: Int(post)!)
+                    main.allPosts = main.dislike(position: Int(post)!, array: main.allPosts)
                 }
             default:
                 print("Invalid Input :(")
             }
-            main.printAllTitles()
+            main.printAll()
         }
     }
     
