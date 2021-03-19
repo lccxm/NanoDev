@@ -26,24 +26,20 @@ struct MainPage {
     }
     
     func readPostText() -> String {
-            var arrayPhrases: [String] = []
-
-            print("Enter a post: (enter ˜ to cancel)")
-
-            while let input = readLine() {
-                guard input != "˜" else {
-                    break
-                }
-                arrayPhrases.append(input)
+        var arrayPhrases: [String] = []
+        print("Enter a post: (enter ˜ to cancel)")
+        while let input = readLine() {
+            guard input != "˜" else {
+                break
             }
-            var postText: String = ""
-
-            for p in arrayPhrases {
-                postText += (p + "\n")
-            }
-
-            return postText
+            arrayPhrases.append(input)
         }
+        var postText: String = ""
+        for p in arrayPhrases {
+            postText += (p + "\n")
+        }
+        return postText
+    }
     
     mutating func like(position: Int, array: [Post]) -> [Post] {
         var newArray = array
@@ -242,7 +238,5 @@ func run() {
             main.printAll()
         }
     }
-    
 }
-
 run()
