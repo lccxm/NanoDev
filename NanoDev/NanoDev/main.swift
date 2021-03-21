@@ -140,6 +140,12 @@ func printPostMenu() {
     print("----------------------------------------------------------------------------------------")
 }
 
+func printReplyMenu() {
+    print("--------------------------------------------")
+    print("|1| Reply this post |2| Reply another reply")
+    print("--------------------------------------------")
+}
+
 func run() {
     var main = MainPage()
     
@@ -176,9 +182,7 @@ func run() {
                         }else {
                             switch Int(n)! {
                             case 1:
-                                print("--------------------------------------------")
-                                print("|1| Reply this post |2| Reply another reply")
-                                print("--------------------------------------------")
+                                printReplyMenu()
                                 let a = readLine()
                                 if let answer = a {
                                     if Int(answer)! < 1 || Int(answer)! > 2 {
