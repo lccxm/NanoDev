@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EC38080F2601309C009C7DCF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC38080E2601309C009C7DCF /* main.swift */; };
+		C0D98B532608D8A7006BAFF8 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D98B522608D8A7006BAFF8 /* main.swift */; };
+		C0D98B5B2608D8C3006BAFF8 /* methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D98B5A2608D8C3006BAFF8 /* methods.swift */; };
+		C0D98B5E2608D8D0006BAFF8 /* post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D98B5D2608D8D0006BAFF8 /* post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		EC3808092601309C009C7DCF /* CopyFiles */ = {
+		C0D98B4D2608D8A7006BAFF8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,12 +25,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		EC38080B2601309C009C7DCF /* NanoDev */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NanoDev; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC38080E2601309C009C7DCF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		C0D98B4F2608D8A7006BAFF8 /* Tidder */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tidder; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0D98B522608D8A7006BAFF8 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		C0D98B5A2608D8C3006BAFF8 /* methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = methods.swift; sourceTree = "<group>"; };
+		C0D98B5D2608D8D0006BAFF8 /* post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		EC3808082601309C009C7DCF /* Frameworks */ = {
+		C0D98B4C2608D8A7006BAFF8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -38,65 +42,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EC3808022601309C009C7DCF = {
+		C0D98B462608D8A6006BAFF8 = {
 			isa = PBXGroup;
 			children = (
-				EC38080D2601309C009C7DCF /* NanoDev */,
-				EC38080C2601309C009C7DCF /* Products */,
+				C0D98B512608D8A7006BAFF8 /* Tidder */,
+				C0D98B502608D8A7006BAFF8 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		EC38080C2601309C009C7DCF /* Products */ = {
+		C0D98B502608D8A7006BAFF8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EC38080B2601309C009C7DCF /* NanoDev */,
+				C0D98B4F2608D8A7006BAFF8 /* Tidder */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EC38080D2601309C009C7DCF /* NanoDev */ = {
+		C0D98B512608D8A7006BAFF8 /* Tidder */ = {
 			isa = PBXGroup;
 			children = (
-				EC38080E2601309C009C7DCF /* main.swift */,
+				C0D98B522608D8A7006BAFF8 /* main.swift */,
+				C0D98B5A2608D8C3006BAFF8 /* methods.swift */,
+				C0D98B5D2608D8D0006BAFF8 /* post.swift */,
 			);
-			path = NanoDev;
+			path = Tidder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EC38080A2601309C009C7DCF /* NanoDev */ = {
+		C0D98B4E2608D8A7006BAFF8 /* Tidder */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EC3808122601309C009C7DCF /* Build configuration list for PBXNativeTarget "NanoDev" */;
+			buildConfigurationList = C0D98B562608D8A7006BAFF8 /* Build configuration list for PBXNativeTarget "Tidder" */;
 			buildPhases = (
-				EC3808072601309C009C7DCF /* Sources */,
-				EC3808082601309C009C7DCF /* Frameworks */,
-				EC3808092601309C009C7DCF /* CopyFiles */,
+				C0D98B4B2608D8A7006BAFF8 /* Sources */,
+				C0D98B4C2608D8A7006BAFF8 /* Frameworks */,
+				C0D98B4D2608D8A7006BAFF8 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = NanoDev;
-			productName = NanoDev;
-			productReference = EC38080B2601309C009C7DCF /* NanoDev */;
+			name = Tidder;
+			productName = Tidder;
+			productReference = C0D98B4F2608D8A7006BAFF8 /* Tidder */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		EC3808032601309C009C7DCF /* Project object */ = {
+		C0D98B472608D8A6006BAFF8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
-					EC38080A2601309C009C7DCF = {
+					C0D98B4E2608D8A7006BAFF8 = {
 						CreatedOnToolsVersion = 12.4;
 					};
 				};
 			};
-			buildConfigurationList = EC3808062601309C009C7DCF /* Build configuration list for PBXProject "NanoDev" */;
+			buildConfigurationList = C0D98B4A2608D8A6006BAFF8 /* Build configuration list for PBXProject "Tidder" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -104,29 +110,31 @@
 				en,
 				Base,
 			);
-			mainGroup = EC3808022601309C009C7DCF;
-			productRefGroup = EC38080C2601309C009C7DCF /* Products */;
+			mainGroup = C0D98B462608D8A6006BAFF8;
+			productRefGroup = C0D98B502608D8A7006BAFF8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EC38080A2601309C009C7DCF /* NanoDev */,
+				C0D98B4E2608D8A7006BAFF8 /* Tidder */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		EC3808072601309C009C7DCF /* Sources */ = {
+		C0D98B4B2608D8A7006BAFF8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC38080F2601309C009C7DCF /* main.swift in Sources */,
+				C0D98B5E2608D8D0006BAFF8 /* post.swift in Sources */,
+				C0D98B5B2608D8C3006BAFF8 /* methods.swift in Sources */,
+				C0D98B532608D8A7006BAFF8 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		EC3808102601309C009C7DCF /* Debug */ = {
+		C0D98B542608D8A7006BAFF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -187,7 +195,7 @@
 			};
 			name = Debug;
 		};
-		EC3808112601309C009C7DCF /* Release */ = {
+		C0D98B552608D8A7006BAFF8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -241,7 +249,7 @@
 			};
 			name = Release;
 		};
-		EC3808132601309C009C7DCF /* Debug */ = {
+		C0D98B572608D8A7006BAFF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -250,7 +258,7 @@
 			};
 			name = Debug;
 		};
-		EC3808142601309C009C7DCF /* Release */ = {
+		C0D98B582608D8A7006BAFF8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -262,25 +270,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EC3808062601309C009C7DCF /* Build configuration list for PBXProject "NanoDev" */ = {
+		C0D98B4A2608D8A6006BAFF8 /* Build configuration list for PBXProject "Tidder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EC3808102601309C009C7DCF /* Debug */,
-				EC3808112601309C009C7DCF /* Release */,
+				C0D98B542608D8A7006BAFF8 /* Debug */,
+				C0D98B552608D8A7006BAFF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EC3808122601309C009C7DCF /* Build configuration list for PBXNativeTarget "NanoDev" */ = {
+		C0D98B562608D8A7006BAFF8 /* Build configuration list for PBXNativeTarget "Tidder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EC3808132601309C009C7DCF /* Debug */,
-				EC3808142601309C009C7DCF /* Release */,
+				C0D98B572608D8A7006BAFF8 /* Debug */,
+				C0D98B582608D8A7006BAFF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = EC3808032601309C009C7DCF /* Project object */;
+	rootObject = C0D98B472608D8A6006BAFF8 /* Project object */;
 }
